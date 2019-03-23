@@ -40,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         A.p();
-        Log.d("TAG", "onCreate: "+getResources().getString(R.string.lib_string));
         lib.lib();
         lib3.lib3();
     }

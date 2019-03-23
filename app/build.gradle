@@ -49,3 +49,21 @@ dependencies {
     // 从本地仓库依赖库
     implementation 'com.android:ruanyandong:0.0.1'
 }
+
+/**
+ * 第一种：Build script
+ * 这种插件脚本的源码放置在模块内的 build.gradle 中，
+ * 好处就是插件脚本会被自动编译并添加进模块的 classpath 中，
+ * 我们完全不用做任何事情。但是，这种插件脚本只能在声明的这个 build.gradle 中使用，
+ * 其他模块是没办法复用这个插件的。
+ */
+apply plugin: CustomPlugin
+
+class CustomPlugin implements Plugin<Project>{
+    @Override
+    void apply(Project target) {
+        target.task('CustomTask').doFirst {
+            println("自定义gradle插件方式，build script")
+        }
+    }
+}
