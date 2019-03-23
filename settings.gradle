@@ -1,1 +1,1 @@
-include ':app', ':mylibrary', ':mylibrary2', ':mylibrary3', ':buildsrc'
+include ':app', ':mylibrary', ':mylibrary2', ':mylibrary3', ':buildsrc', ':javaLib'

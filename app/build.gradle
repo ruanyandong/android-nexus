@@ -32,6 +32,9 @@ allprojects {
         maven{
             url "http://localhost:8081/repository/com.android.ruanyandong/"
         }
+        maven {
+            url "http://localhost:8081/repository/javaPlugin/"
+        }
     }
 }
 
@@ -48,6 +51,7 @@ dependencies {
     implementation(name:'lib2',ext:'aar')
     // 从本地仓库依赖库
     implementation 'com.android:ruanyandong:0.0.1'
+    implementation 'com.ai.javalib:javaLib:1.0.0'
 }
 
 /**

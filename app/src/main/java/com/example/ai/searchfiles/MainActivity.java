@@ -3,6 +3,8 @@ package com.example.ai.searchfiles;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.ai.javalib.javaPlugin;
 import com.example.mylibrary.A;
 import com.example.mylibrary2.lib;
 import com.example.mylibrary3.lib3;
@@ -16,6 +18,8 @@ public class MainActivity extends AppCompatActivity {
         A.p();
         lib.lib();
         lib3.lib3();
+        // javalib
+        javaPlugin plugin = new javaPlugin("ai",20);
     }
 
     private String searchFile(String keyword){

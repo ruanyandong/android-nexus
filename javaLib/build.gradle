@@ -1,0 +1,37 @@
+apply plugin: 'java-library'
+apply plugin: 'java'
+apply plugin: 'maven' //支持自定义的maven
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+}
+
+sourceCompatibility = "7"
+targetCompatibility = "7"
+
+task publishJar(type: Jar,dependsOn: classes){
+    // 打包源代码
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+group 'com.ai.javalib'
+version '1.0.0'
+
+artifacts{
+    archives publishJar
+}
+
+uploadArchives{
+    repositories{
+        mavenLocal()
+        mavenDeployer{
+            repository(url:"http://localhost:8081/repository/javaPlugin/"){
+                authentication(userName:"ruanyandong",password:"ruanyandong")
+            }
+            pom.version="$project.version"
+            pom.artifactId = "javaLib"
+            pom.groupId = "$project.group"
+        }
+    }
+}
