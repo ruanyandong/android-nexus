@@ -57,9 +57,9 @@ dependencies {
  * 我们完全不用做任何事情。但是，这种插件脚本只能在声明的这个 build.gradle 中使用，
  * 其他模块是没办法复用这个插件的。
  */
-apply plugin: CustomPlugin
+apply plugin: BuildScriptPlugin
 
-class CustomPlugin implements Plugin<Project>{
+class BuildScriptPlugin implements Plugin<Project>{
     @Override
     void apply(Project target) {
         target.task('CustomTask').doFirst {
@@ -67,3 +67,9 @@ class CustomPlugin implements Plugin<Project>{
         }
     }
 }
+/**
+ * 这种插件脚本要求源码放置在 rootProjectDir/buildSrc/src/main/groovy目录内（也就是工程根目录下创建 buildSrc 目录），
+ * 然后 [Gralde] 就会自动编译和测试这个插件，同时，这种方法创建的插件对工程内的所有模块都是可以使用的。
+ */
+// 或者apply plugin:'com.ai.buildsrc.customplugin'
+apply plugin:com.ai.buildsrc.CustomPlugin
