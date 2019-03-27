@@ -9,6 +9,7 @@
       <module fileurl="file://$PROJECT_DIR$/mylibrary/mylibrary.iml" filepath="$PROJECT_DIR$/mylibrary/mylibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/mylibrary2/mylibrary2.iml" filepath="$PROJECT_DIR$/mylibrary2/mylibrary2.iml" />
       <module fileurl="file://$PROJECT_DIR$/mylibrary3/mylibrary3.iml" filepath="$PROJECT_DIR$/mylibrary3/mylibrary3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/updateapkname/updateapkname.iml" filepath="$PROJECT_DIR$/updateapkname/updateapkname.iml" />
     </modules>
   </component>
 </project>

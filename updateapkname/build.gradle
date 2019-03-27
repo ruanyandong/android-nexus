@@ -1,0 +1,70 @@
+apply plugin: 'com.android.application'
+apply from:'version.gradle'
+android {
+    compileSdkVersion 28
+
+    useLibrary 'org.apache.http.legacy'
+
+
+    defaultConfig {
+        applicationId "com.ruanyandong.updateapkname"
+        minSdkVersion 16
+        targetSdkVersion 28
+        versionCode appVersionCode
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            zipAlignEnabled true // 启用优化
+        }
+    }
+
+    flavorDimensions "version"
+
+    productFlavors{
+        google {
+        }
+    }
+
+    lintOptions {
+        disable 'GoogleAppIndexingWarning'
+    }
+
+    applicationVariants.all{variant ->
+        variant.outputs.each{ output->
+            if (output.outputFile != null &&
+                    output.outputFile.name.endsWith('.apk') &&
+                    'release'.equals(variant.buildType.name)){
+                def flavorName = variant.flavorName.startsWith("_")?variant.flavorName.subString(1):variant.flavorName
+                // 不能用绝对路径
+                def apkFile = "ruanyandong_${flavorName}_v${variant.versionName}_${buildTime()}.apk"
+                output.outputFileName = apkFile
+
+            }
+        }
+
+    }
+
+}
+
+def buildTime(){
+    def date = new Date()
+    def formateDate = date.format('yyyy-MM-dd')
+    return formateDate
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+}
