@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/SearchFiles.iml" filepath="$PROJECT_DIR$/SearchFiles.iml" />
+      <module fileurl="file://$PROJECT_DIR$/androidndk/androidndk.iml" filepath="$PROJECT_DIR$/androidndk/androidndk.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/buildsrc/buildsrc.iml" filepath="$PROJECT_DIR$/buildsrc/buildsrc.iml" />
       <module fileurl="file://$PROJECT_DIR$/javaLib/javaLib.iml" filepath="$PROJECT_DIR$/javaLib/javaLib.iml" />

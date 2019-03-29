@@ -1,1 +1,1 @@
-include ':app', ':mylibrary', ':mylibrary2', ':mylibrary3', ':buildsrc', ':javaLib', ':updateapkname'
+include ':app', ':mylibrary', ':mylibrary2', ':mylibrary3', ':buildsrc', ':javaLib', ':updateapkname', ':androidndk'

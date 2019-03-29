@@ -13,8 +13,10 @@ android {
         versionCode appVersionCode
         versionName "1.0"
 
+        testApplicationId "com.ruanyandong.updateapkname.test"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
+        testHandleProfiling true
+        testFunctionalTest true
     }
 
     buildTypes {
@@ -29,7 +31,11 @@ android {
 
     productFlavors{
         google {
+            manifestPlaceholders.put("UMENG_CHANNEL","google")
+            buildConfigField 'String','WEB_URL','"http://www.google.com"'
+            resValue 'string','channel','google'
         }
+
     }
 
     lintOptions {
@@ -51,20 +57,48 @@ android {
 
     }
 
+    compileOptions{
+        encoding = 'utf-8'
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    println(getAppVersionCode())
+    println(getAppVersionName())
+
+}
+
+def getAppVersionName(){
+    def stdout = new ByteArrayOutputStream()
+    exec{
+        commandLine 'git','describe','--abbrev=0','--tags'
+        standardOutput = stdout
+    }
+    return stdout.toString()
+}
+
+def getAppVersionCode(){
+    def stdout = new ByteArrayOutputStream()
+    exec{
+        commandLine 'git','tag','--list'
+        standardOutput = stdout
+    }
+    return stdout.toString().split("\n").size()
 }
 
 def buildTime(){
     def date = new Date()
-    def formateDate = date.format('yyyy-MM-dd')
+    def formateDate = date.format('yyyy-MM-dd-HH-mm-ss')
     return formateDate
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test:rules:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 }
